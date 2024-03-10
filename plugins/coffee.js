@@ -18,9 +18,9 @@ let handler = async (m, { conn, text }) => {
   }
 }
 
-handler.help = ["coffee"];
+handler.help = ["trans"];
 handler.tags = ["tools"];
-handler.command = ["coffee"];
+handler.command = /^(trans)$/i
 
 export default handler;
 
