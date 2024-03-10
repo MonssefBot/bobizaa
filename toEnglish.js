@@ -9,10 +9,9 @@ let handler = async (m, {
     command
 }) => {
             if (!text) return m.reply("يستعمل هذا الأمر لترجمة النصوص الى اللغة الإنجليزية . مثلا\n*.trans إستعملت واتساب لترجمة النصوص*")
-            await m.reply(wait)
             try {
                 let item = await Translate(text)
-                let cap = `🔍 *[ TRANSLATE ]*
+                let cap = `🔍 *[ T R A N S L A T E ]*
 
 ✏️ *:* ${text}
 📌 *:* ${item}
@@ -23,15 +22,15 @@ let handler = async (m, {
                 await m.reply('error')
             }
 }
-handler.help = ["trans"]
-handler.tags = ["search"]
-handler.command = /^(trans)$/i
+handler.help = ["to-en"]
+handler.tags = ["to-en"]
+handler.command = /^(to-en|en)$/i
 export default handler
 
 function Translate(text, lang = "en") {
   const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURI(text)}`;
   fetch(url).then((response) => response.json())
   .then((json) => {
-    return json[0].map((item) => item[0]).join("");
+    return json[0][0][0];
   })
       }
