@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import OpenAI from "openai";
 
 let handler = async (m, {
     conn,
@@ -8,7 +9,7 @@ let handler = async (m, {
     command
 }) => {
     if (!text) return m.reply("يستعمل هذا الأمر لترجمة النصوص الى اللغة الإنجليزية . مثلا\n*.trans إستعملت واتساب لترجمة النصوص*");
-    m.reply(global.wait);
+    await m.reply(wait)
     try {
         let item = await SendImg(text)
         let cap = `🔍 *[ TRANSLATE ]*
@@ -33,10 +34,28 @@ async function SendImg(text) {
     let json = await response.json();
     let textT = json[0][0][0];
 
-    const openaiUrl = 'https://api.openai.com/v1/images/generations';
-    const openaiKey = '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';
+    //const openaiUrl = 'https://api.openai.com/v1/images/generations';
+    //const openaiKey = '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';
 
-    const methods = {
+
+
+
+
+const openai = new OpenAI();
+
+
+  const imgs = await openai.createImage({
+  model: "dall-e-3",
+  prompt: textT,
+  n: 1,
+  size: "1024x1024",
+});
+image_url = imgs.data.data[0].url;
+
+
+return image_url;
+    
+    /*const methods = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,5 +70,5 @@ async function SendImg(text) {
 
     const res = await fetch(openaiUrl, methods);
     const data = await res.json();
-    return data.data.data[0].url;
+    return data.data.data[0].url;*/
 }
