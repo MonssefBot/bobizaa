@@ -5,7 +5,7 @@ const translate = new Translate();
 let handler = async (m, { conn, text }) => {
   if (!text) throw "يُرجى إرسال نص للترجمة";
 
-  // الحصول على أول حرفين من الرسالة
+  try{
   const targetLang = text.substring(0, 2);
   const textToTranslate = text.substring(2);
   //await conn.reply(m.chat, global.wait, m);
@@ -13,7 +13,10 @@ let handler = async (m, { conn, text }) => {
   const translatedText = translation;
 
   await conn.reply(m.chat, translatedText, m);
-};
+  }catch(e){
+    throw eror
+  }
+}
 
 handler.help = ["coffee"];
 handler.tags = ["tools"];
