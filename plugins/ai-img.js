@@ -1,4 +1,3 @@
-import cheerio from 'cheerio';
 import fetch from 'node-fetch';
 
 let handler = async (m, {
@@ -9,6 +8,7 @@ let handler = async (m, {
     command
 }) => {
     if (!text) return m.reply("يستعمل هذا الأمر لترجمة النصوص الى اللغة الإنجليزية . مثلا\n*.trans إستعملت واتساب لترجمة النصوص*");
+    m.reply(global.wait);
     try {
         let item = await SendImg(text)
         let cap = `🔍 *[ TRANSLATE ]*
@@ -27,38 +27,29 @@ handler.tags = ["ai"]
 handler.command = /^(img|img-ai)$/i
 export default handler
 
-/*async function SendImg(text) {
-    const KEY = "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";
-    let textTranslated = await Translate(text)
-    const methods = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${KEY}`
-        },
-        body: JSON.stringify({
-          "prompt": textTranslated,
-          "n": 1,
-          "size": "512x512"
-        })
-      };
-      const res = await fetch("https://api.openai.com/v1/images/generations", methods);
-      const data = await res.json();
-      return data.data;
-      }*/
-
 async function SendImg(text) {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=${encodeURI(text)}`;
     let response = await fetch(url);
     let json = await response.json();
     let textT = json[0][0][0];
 
-    const response = await openai.createImage({
-  model: "dall-e-3",
-  prompt: textT,
-  n: 1,
-  size: "1024x1024",
-});
-image_url = response.data.data[0].url;
-return image_url;
+    const openaiUrl = 'https://api.openai.com/v1/images/generations';
+    const openaiKey = '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';
+
+    const methods = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${openaiKey}`
+        },
+        body: JSON.stringify({
+          "prompt": textT,
+          "n": 1,
+          "size": "1024x1024"
+        })
+      };
+
+    const res = await fetch(openaiUrl, methods);
+    const data = await res.json();
+    return data.data.data[0].url;
 }
