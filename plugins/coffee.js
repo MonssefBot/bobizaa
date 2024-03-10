@@ -3,24 +3,21 @@ import fs from 'fs';
 
 const translate = new Translate();
 let handler = async (m, { conn, text }) => {
-  if (!text) throw 'يُرجى إرسال نص للترجمة';
+  if (!text) throw "يُرجى إرسال نص للترجمة";
 
   // الحصول على أول حرفين من الرسالة
   const targetLang = text.substring(0, 2);
   const textToTranslate = text.substring(2);
-
   //await conn.reply(m.chat, global.wait, m);
-
-  // ترجمة النص إلى اللغة المحددة
   const [translation] = await translate.translate(textToTranslate, targetLang);
   const translatedText = translation;
 
-  conn.reply(m.chat, translatedText, m);
+  await conn.reply(m.chat, translatedText, m);
 };
 
-handler.help = ['coffee'];
-handler.tags = ['tools'];
-handler.command = /^(coffee)$/i
+handler.help = ["coffee"];
+handler.tags = ["tools"];
+handler.command = ["coffee"];
 
 export default handler;
 
