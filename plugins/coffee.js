@@ -1,11 +1,7 @@
 import { Translate } from '@google-cloud/translate';
 import fs from 'fs';
 
-// يرجى تعيين متغيرات البيئة GOOGLE_APPLICATION_CREDENTIALS وGOOGLE_PROJECT_ID
-// إلى معرفاتك الخاصة بمشروع Google Cloud ومفتاح واجهة برمجة التطبيقات
-
 const translate = new Translate();
-
 let handler = async (m, { conn, text }) => {
   if (!text) throw 'يُرجى إرسال نص للترجمة';
 
@@ -13,7 +9,7 @@ let handler = async (m, { conn, text }) => {
   const targetLang = text.substring(0, 2);
   const textToTranslate = text.substring(2);
 
-  await conn.reply(m.chat, global.wait, m);
+  //await conn.reply(m.chat, global.wait, m);
 
   // ترجمة النص إلى اللغة المحددة
   const [translation] = await translate.translate(textToTranslate, targetLang);
@@ -24,7 +20,7 @@ let handler = async (m, { conn, text }) => {
 
 handler.help = ['coffee'];
 handler.tags = ['tools'];
-handler.command = ['ترجم'];
+handler.command = /^(coffee)$/i
 
 export default handler;
 
