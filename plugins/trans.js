@@ -8,16 +8,16 @@ let handler = async (m, {
     text,
     command
 }) => {
-            if (!text) return m.reply("هذا الامر خاص بالبحث عن المواضيع في ويكيبيديا نكتب هكذا \n*.wiki العدالة*")
+            if (!text) return m.reply("يستعمل هذا الأمر لترجمة النصوص الى اللغة الإنجليزية . مثلا\n*.trans إستعملت واتساب لترجمة النصوص*")
             await m.reply(wait)
             try {
                 let item = await Translate(text)
-                let cap = `🔍 *[ RESULT ]*
+                let cap = `🔍 *[ TRANSLATE ]*
 
-✏️ *:* ${item}
-📌 *:* ${text}
+✏️ *:* ${text}
+📌 *:* ${item}
 `
-                await conn.sendFile(m.chat, item[0].thumb || logo, "", cap, m)
+                await conn.sendFile(m.chat, "https://telegra.ph/file/e9884546aaad4c9f47125.jpg", "", cap, m)
                 
             } catch (e) {
                 await m.reply('error')
