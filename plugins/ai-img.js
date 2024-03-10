@@ -27,7 +27,7 @@ handler.tags = ["ai"]
 handler.command = /^(img|img-ai)$/i
 export default handler
 
-async function SendImg(text)=> {
+/*async function SendImg(text) {
     const KEY = "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";
     let textTranslated = await Translate(text)
     const methods = {
@@ -45,11 +45,20 @@ async function SendImg(text)=> {
       const res = await fetch("https://api.openai.com/v1/images/generations", methods);
       const data = await res.json();
       return data.data;
-}
+      }*/
 
-async function Translate(text, lang = "en") {
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURI(text)}`;
+async function SendImg(text) {
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=${encodeURI(text)}`;
     let response = await fetch(url);
     let json = await response.json();
-    return json[0][0][0];
+    let textT = json[0][0][0];
+
+    const response = await openai.createImage({
+  model: "dall-e-3",
+  prompt: textT,
+  n: 1,
+  size: "1024x1024",
+});
+image_url = response.data.data[0].url;
+return image_url;
 }
