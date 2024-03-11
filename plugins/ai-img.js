@@ -11,7 +11,7 @@ let handler = async (m, {
     text,
     command
 }) => {
-    if (!text) return m.reply("يستعمل هذا الأمر لترجمة النصوص الى اللغة الإنجليزية . مثلا\n*.trans إستعملت واتساب لترجمة النصوص*");
+    if (!text) return m.reply("يستعمل هذا الأمر لتوليد صور HD بواسطة الذكاء الإصطناعي مثلا . مثلا\n*.img إستعملت واتساب لترجمة النصوص*");
     await m.reply(wait)
     try {
         const openai = new OpenAI();
@@ -36,7 +36,8 @@ let handler = async (m, {
 handler.help = ["img-ai"]
 handler.tags = ["ai"]
 handler.command = /^(img|img-ai)$/i
-module.exports = handler;
+export default handler
+
 
 async function Translate(text) {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=${encodeURI(text)}`;
