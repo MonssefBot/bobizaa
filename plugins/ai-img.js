@@ -26,7 +26,7 @@ let handler = async (m, {
         //const t = JSON.stringify(imgs);
         await m.reply(imageUrl);
     } catch (e) {
-        await m.reply('*حدث خطأ أثناء إنشاء الصور*❎');
+        await m.reply('*حدث خطأ أثناء إنشاء الصور*❎'+ String(e));
     }
 }
 handler.help = ["img-ai"]
