@@ -26,7 +26,6 @@ global.wm = 'bouazza';
 global.titulowm = 'bouazza';
 global.titulowm2 = `bouazza`
 global.igfg = 'bouazza';
-global.key = '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';
 global.wait = '*|🏃| loading...*\n*نحاول تلبية طلبكم لا تستعجلوا*❤';
 global.imagen1 = fs.readFileSync('./Menu2.jpg');
 global.imagen2 = fs.readFileSync('./src/nuevobot.jpg');
