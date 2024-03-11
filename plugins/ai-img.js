@@ -11,15 +11,10 @@ let handler = async (m, {
     if (!text) return m.reply("يستعمل هذا الأمر لترجمة النصوص الى اللغة الإنجليزية . مثلا\n*.trans إستعملت واتساب لترجمة النصوص*");
     await m.reply(wait)
     try {
-        let item = await SendImg(text)
-        let cap = `🔍 *[ TRANSLATE ]*
-
-✏️ *:* ${text}
-📌 *:* ${item}
-`
-        await conn.sendFile(m.chat, item, "", "", m)
+        let item = await SendImg(text);
+        //await conn.sendFile(m.chat, item, "", "", m)
+        await m.reply(item)
     } catch (e) {
-        console.error(e)
         await m.reply('*حدث خطأ أثناء إنشاء الصور*❎')
     }
 }
@@ -53,7 +48,7 @@ const openai = new OpenAI();
 image_url = imgs.data.data[0].url;
 
 
-return image_url;
+return JSON.stringify(imgs);
     
     /*const methods = {
         method: "POST",
