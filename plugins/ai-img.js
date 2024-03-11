@@ -14,14 +14,14 @@ let handler = async (m, {
     if (!text) return m.reply("يستعمل هذا الأمر لتوليد صور HD بواسطة الذكاء الإصطناعي . مثلا\n*.img A photograph of a white Siamese cat*");
     await m.reply(wait)
     try {
-        const openai = new OpenAI();
-        const imgs = await openai.createImage({
+        let openai = new OpenAI();
+        let imgs = await openai.createImage({
             model: "dall-e-3",
             prompt: text,
             n: 1,
             size: "1024x1024",
         });
-        const imageUrl = imgs.data[0].url;
+        let imageUrl = imgs.data[0].url;
 
         //const t = JSON.stringify(imgs);
         await m.reply(imageUrl);
