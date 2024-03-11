@@ -1,8 +1,8 @@
-/*import fetch from 'node-fetch';
-import OpenAI from 'openai';*/
+import fetch from 'node-fetch';
+import OpenAI from 'openai';
 
-const fetch = require('node-fetch');
-const OpenAI = require('openai');
+/*const fetch = require('node-fetch');
+const OpenAI = require('openai');*/
 
 let handler = async (m, {
     conn,
@@ -21,7 +21,7 @@ let handler = async (m, {
             n: 1,
             size: "1024x1024",
         });
-        const imageUrl = imgs.data.data[0].url;
+        const imageUrl = imgs.data[0].url;
 
         //const t = JSON.stringify(imgs);
         await m.reply(imageUrl);
