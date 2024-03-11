@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
-import OpenAI from "openai";
+import OpenAI from 'openai';
 
-const fetch = require('node-fetch');
-const OpenAI = require('openai');
+/*const fetch = require('node-fetch');
+const OpenAI = require('openai');*/
 
 let handler = async (m, {
     conn,
