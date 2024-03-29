@@ -45,5 +45,5 @@ $('.Thumb--GridItem a').each((index, element) => {
   const judul = $('h1#section_0').text();
   return [{ wiki, thumb: `https:${thumb}`, judul }];*/
 
-    return links;
+    return linksArray;
                      }
