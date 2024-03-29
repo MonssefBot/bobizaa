@@ -34,7 +34,7 @@ async function Wiki(query) {
     const title = $(element).find('div').find('a').attr('title');
     const href = $(element).find('div').find('a').attr('href');
     linksArray.push({"title":title, "url":href});
-  )};
+  });
    
   
     
