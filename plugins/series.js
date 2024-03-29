@@ -12,12 +12,8 @@ let handler = async (m, {
             await m.reply(wait)
             try {
                 let item = await Wiki(text)
-                let cap = `🔍 *[ RESULT ]*
-
-📌 *:* ${item[0].judul}
-📋 *:* ${item[0].wiki}
-`
-                await conn.sendFile(m.chat, item[0].thumb || logo, "", cap, m)
+                let cap = item[0].url;
+                await conn.sendFile(m.chat, logo, "", cap, m)
                 
             } catch (e) {
                 await m.reply('error')
@@ -30,11 +26,24 @@ export default handler
 
 /* New Line */
 async function Wiki(query) {
-  const res = await fetch(`https://ar.m.wikipedia.org/w/index.php?search=${query}`);
+  const res = await fetch(`https://mycima.wecima.show/search/${query}/list/`);
   const html = await res.text();
   const $ = cheerio.load(html);
-  const wiki = $('#mf-section-0').find('p').text();
+  const links = [];
+
+// البحث عن عناصر الرابط واستخراج البيانات
+$('.Thumb--GridItem a').each((index, element) => {
+  const title = $(element).attr('title');
+  const href = $(element).attr('href');
+  linksArray.push({"title":title, "url":href});
+)};
+
+
+    
+  /*const wiki = $('#mf-section-0').find('p').text();
   const thumb = $('#mf-section-0').find('div > div > a > img').attr('src') || '//pngimg.com/uploads/wikipedia/wikipedia_PNG35.png';
   const judul = $('h1#section_0').text();
-  return [{ wiki, thumb: `https:${thumb}`, judul }];
+  return [{ wiki, thumb: `https:${thumb}`, judul }];*/
+
+    return links;
                      }
