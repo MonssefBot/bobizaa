@@ -27,13 +27,13 @@ export default handler
 async function Wiki(query) {
   const res = await fetch(`https://mycima.wecima.show/search/${query}/list/`);
   const html = await res.text();
-  //const $ = cheerio.load(html);
+  const $ = cheerio.load(html);
   let linksArray = ["5777"];
   
-  /*$('.Thumb--GridItem a').each((index, element) => {
+  $('.Thumb--GridItem a').each((index, element) => {
     const title = $(element).attr('title');
     const href = $(element).attr('href');
-    linksArray.push({"title":title, "url":href});
-  )};*/
+    //linksArray.push({"title":title, "url":href});
+  )};
   return linksArray;
 }
