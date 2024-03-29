@@ -12,7 +12,7 @@ let handler = async (m, {
             await m.reply(wait)
             try {
                 let item = await Wiki(text)
-                let cap = item[0].url;
+                let cap = item[0];
                 await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
             } catch (e) {
@@ -27,13 +27,13 @@ export default handler
 async function Wiki(query) {
   const res = await fetch(`https://mycima.wecima.show/search/${query}/list/`);
   const html = await res.text();
-  const $ = cheerio.load(html);
-  let linksArray = [];
+  //const $ = cheerio.load(html);
+  let linksArray = ["5777"];
   
-  $('.Thumb--GridItem a').each((index, element) => {
+  /*$('.Thumb--GridItem a').each((index, element) => {
     const title = $(element).attr('title');
     const href = $(element).attr('href');
     linksArray.push({"title":title, "url":href});
-  )};
+  )};*/
   return linksArray;
 }
