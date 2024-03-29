@@ -30,15 +30,12 @@ async function Wiki(query) {
   const $ = cheerio.load(html);
   let linksArray = [];
   
-  /*$('.Thumb--GridItem a').each((index, element) => {
+  $('.Grid--WecimaPosts div').each((index, element) => {
     const title = $(element).attr('title');
     const href = $(element).attr('href');
     linksArray.push({"title":title, "url":href});
-  )};*/
+  )};
    
-  const wiki = $('.Thumb--GridItem').text();
-  //const thumb = $('#mf-section-0').find('div > div > a > img').attr('src') || '//pngimg.com/uploads/wikipedia/wikipedia_PNG35.png';
-  //const judul = $('h1#section_0').text();
   
     
   return wiki;
