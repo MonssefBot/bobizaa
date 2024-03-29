@@ -13,7 +13,7 @@ let handler = async (m, {
             try {
                 let item = await Wiki(text)
                 let cap = item[0].url;
-                await conn.sendFile(m.chat, logo, "", cap, m)
+                await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
             } catch (e) {
                 await m.reply('error')
@@ -29,7 +29,7 @@ async function Wiki(query) {
   const res = await fetch(`https://mycima.wecima.show/search/${query}/list/`);
   const html = await res.text();
   const $ = cheerio.load(html);
-  const links = [];
+  const linksArray = [];
 
 // البحث عن عناصر الرابط واستخراج البيانات
 $('.Thumb--GridItem a').each((index, element) => {
