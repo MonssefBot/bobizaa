@@ -11,9 +11,13 @@ let handler = async (m, {
             if (!text) return m.reply("هذا الامر خاص بالبحث عن المسلسلات الأجنبية نكتب هكذا \n*.series prison break*")
             await m.reply(wait)
             try {
-                let item = await Wiki(text)
+                let item = await Wiki(text);
+                
                 let cap = item[0].url;
-                await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
+
+
+                
+                await conn.sendFile(m.chat, item[0].img || "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
             } catch (e) {
                 await m.reply('error')
@@ -33,7 +37,17 @@ async function Wiki(query) {
   $('.Grid--WecimaPosts div').each((index, element) => {
     const title = $(element).find('div').find('a').attr('title');
     const href = $(element).find('div').find('a').attr('href');
-    linksArray.push({"title":title, "url":href});
+    const imgRaw = $(element).find('div').find('a').find('.BG--GridItem').attr('style');
+    
+    const matches = imgRaw.match(/\((.*?)\)/);
+    if (matches) {
+      let img = matches[1];
+    } else {
+      let img = null;
+    }
+
+    
+    linksArray.push({"title":title, "url":href, "img":img});
   });
    
   
