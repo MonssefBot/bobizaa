@@ -13,9 +13,16 @@ let handler = async (m, {
             try {
                 let item = await Wiki(text);
                 
-                let cap = item[0].url;
+                let cap = "";
 
+                item.forEach(e => {
+                    cap += `
+↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${122} /n ↳ ✏️ *_NAME :_* ${e.title}
 
+◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+`;
+                });
+                
                 
                 await conn.sendFile(m.chat, item[0].img || "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
