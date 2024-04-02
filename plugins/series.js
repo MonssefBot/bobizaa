@@ -13,18 +13,16 @@ let handler = async (m, {
             try {
                 let item = await Wiki(text);
                 
-                let cap = "";
+                let cap = JSON.stringify(item);
 
-                item.forEach(e => {
+                /*item.forEach(e => {
                     cap += `
-↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${e.url} /n ↳ ✏️ *_NAME :_* ${e.title}
-
-◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+                    ↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${e.url} /n ↳ ✏️ *_NAME :_* ${e.title}/n/n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
 `;
-                });
+                });*/
                 
                 
-                await conn.sendFile(m.chat, item[0].img || "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
+                await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
             } catch (e) {
                 await m.reply('error')
@@ -36,7 +34,8 @@ handler.command = /^(series)$/i
 export default handler
 
 async function Wiki(query) {
-  const res = await fetch(`https://mycima.wecima.show/search/${query}/list/`);
+  const name = query.replace(/ /g, '+');
+  const res = await fetch(`https://mycima.wecima.show/search/${name}/list/`);
   const html = await res.text();
   const $ = cheerio.load(html);
   let linksArray = [];
