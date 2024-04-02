@@ -17,15 +17,14 @@ let handler = async (m, {
 
                 /*item.forEach(e => {
                     cap += `
-                    ↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${e.url} /n ↳ ✏️ *_NAME :_* ${e.title}/n/n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
-`;
+                    ↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${e.url} /n ↳ ✏️ *_NAME :_* ${e.title}/n/n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
                 });*/
                 
                 
                 await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
             } catch (e) {
-                await m.reply('error')
+                await m.reply('حدث خطأ أثناء العثور على المسلسل./n المرجو المحاولة لاحقا.')
             }
 }
 handler.help = ["series"]
@@ -45,28 +44,14 @@ async function Wiki(query) {
     const href = $(element).find('div').find('a').attr('href');
     const imgRaw = $(element).find('div').find('a').find('.BG--GridItem').attr('style');
     
+    let img = null; // تعريف المتغير خارج الشرط
+    
     const matches = imgRaw.match(/\((.*?)\)/);
     if (matches) {
-      let img = matches[1];
-    } else {
-      let img = null;
+      img = matches[1];
     }
-
     
     linksArray.push({"title":title, "url":href, "img":img});
   });
-   
-  
-    
   return linksArray;
-
-
-
-
-
-  
-
-
-
-
 }
