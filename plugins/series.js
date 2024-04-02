@@ -17,7 +17,7 @@ let handler = async (m, {
 
                 item.forEach(e => {
                     cap += `
-↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${122} /n ↳ ✏️ *_NAME :_* ${e.title}
+↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${e.url} /n ↳ ✏️ *_NAME :_* ${e.title}
 
 ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
 `;
