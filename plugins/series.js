@@ -1,31 +1,21 @@
 import cheerio from 'cheerio';
 import fetch from 'node-fetch';
 
-let handler = async (m, {
-    conn,
-    args,
-    usedPrefix,
-    text,
-    command
-}) => {
-            if (!text) return m.reply("هذا الامر خاص بالبحث عن المسلسلات الأجنبية نكتب هكذا \n*.series prison break*")
-            await m.reply(wait)
-            try {
-                let item = await Wiki(text);
+let handler = async (m, {conn, args, usedPrefix, text, command}) => {
+    if (!text) return m.reply("هذا الامر خاص بالبحث عن المسلسلات الأجنبية نكتب هكذا \n*.series prison break*")
+    await m.reply(wait)
+    try {
+    let item = await Wiki(text);
+    let cap = item[0].img;
+    /*item.forEach(e => {
+        cap += `↳ 🔗 *_LINK :_* ${e.url} \n↳ 🕒 *_DATE :_* ${e.url} \n ↳ ✏️ *_NAME :_* ${e.title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
+    });*/
                 
-                let cap = JSON.stringify(item);
-
-                /*item.forEach(e => {
-                    cap += `
-                    ↳ 🔗 *_LINK :_* ${e.url} /n ↳ 🕒 *_DATE :_* ${e.url} /n ↳ ✏️ *_NAME :_* ${e.title}/n/n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
-                });*/
+    await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
-                
-                await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
-                
-            } catch (e) {
-                await m.reply('حدث خطأ أثناء العثور على المسلسل./n المرجو المحاولة لاحقا.')
-            }
+    } catch (e) {
+        await m.reply("حدث خطأ أثناء العثور على المسلسل. \n المرجو المحاولة لاحقا.")
+    }
 }
 handler.help = ["series"]
 handler.tags = ["search"]
@@ -51,7 +41,7 @@ async function Wiki(query) {
       img = matches[1];
     }
     
-    linksArray.push({"title":title, "url":href, "img":img});
+    linksArray.push({"title":title, "url":href, "img":imgRaw});
   });
   return linksArray;
 }
