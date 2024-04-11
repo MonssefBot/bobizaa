@@ -14,7 +14,8 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
     } catch (e) {
-        await m.reply("*حدث خطأ أثناء العثور على المسلسل.* \n *المرجو المحاولة لاحقا.*")
+        await m.reply("*حدث خطأ أثناء العثور على المسلسل.* \n *المرجو المحاولة لاحقا.*");
+        await m.reply(e)
     }
 }
 handler.help = ["series"]
