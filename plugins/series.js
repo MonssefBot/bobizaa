@@ -30,7 +30,7 @@ async function Search(query) {
   const $ = cheerio.load(html);
   let arrays = [];
   
-  $('.Grid--WecimaPosts div').each((index, element) => {
+  $('.Grid--WecimaPosts GridItem').each((index, element) => {
     const title = $(element).find('div').find('a').attr('title');
     const href = $(element).find('div').find('a').attr('href');
     const imgRaw = $(element).find('div').find('a').find('span').attr('style');
