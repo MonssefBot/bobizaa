@@ -36,16 +36,13 @@ async function Search(query) {
     //const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').attr('style');
     
     const span = $(element).find('.Thumb--GridItem').find('a').html();
-
-      
-    let img = undefined;
-    let date = undefined;
-    const matches = span.match(/\((.*?)\)/);
-    if (matches) {
-      img = matches[1];
-      date = matches[2];
+    const regex = /\((.*?)\)/g;
+    let matches = [];
+    let match;
+    while ((match = regex.exec(span)) !== null) {
+      matches.push(match[1]);
     }
-    arrays.push({"title":title, "url":href, "img":img, "date":date, "span":span});
+    arrays.push({"title":title, "url":href, "img":matches[0], "date":matches[1], "span":span});
   });
   return arrays.filter(obj => Object.keys(obj).length !== 0);
 
