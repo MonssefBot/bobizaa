@@ -44,5 +44,6 @@ async function Search(query) {
     }*/
     arrays.push({"title":title, "url":href, "img":imgRaw});
   });
-  return arrays;
+  return arrays.filter(obj => Object.keys(obj).length !== 0);
+
 }
