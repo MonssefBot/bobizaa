@@ -8,8 +8,8 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     let items = await Search(text);
     let cap = "";//JSON.stringify(item[0]);
     let loops = items.length < 10? items.length: 10;
-    for(let i = 0;i <= loops;i++){
-        cap += `↳ 🔗 *_LINK :_* ${items[i].url} \n↳ 📅 *_DATE :_* ${items[i].date} \n ↳ ✏️ *_NAME :_* ${items[i].title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
+    for(let i = 0;i < loops;i++){
+        cap += `↳ 🔗 *LINK :* ${items[i].url} \n↳ 🕐 *DATE :* ${items[i].date} \n ↳ ✏️ *NAME :* ${items[i].title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n`;
     }
                 
     await conn.sendFile(m.chat, items[0].img, "", cap, m)
