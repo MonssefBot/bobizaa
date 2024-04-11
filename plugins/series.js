@@ -5,7 +5,7 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     if (!text) return m.reply("هذا الامر خاص بالبحث عن المسلسلات الأجنبية نكتب هكذا \n*.series prison break*")
     await m.reply(wait)
     try {
-    let item = await Search(text);
+    let items = await Search(text);
     let cap = "";//JSON.stringify(item[0]);
     let loops = items.length < 10? items.length: 10;
     for(let i = 0;i <= loops;i++){
