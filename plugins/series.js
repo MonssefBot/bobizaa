@@ -5,7 +5,7 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     if (!text) return m.reply("هذا الامر خاص بالبحث عن المسلسلات الأجنبية نكتب هكذا \n*.series prison break*")
     await m.reply(wait)
     try {
-    let item = await Wiki(text);
+    let item = await Search(text);
     let cap = JSON.stringify(item);
     /*item.forEach(e => {
         cap += `↳ 🔗 *_LINK :_* ${e.url} \n↳ 🕒 *_DATE :_* ${e.url} \n ↳ ✏️ *_NAME :_* ${e.title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
@@ -23,7 +23,7 @@ handler.tags = ["search"]
 handler.command = /^(series)$/i
 export default handler
 
-async function Wiki(query) {
+async function Search(query) {
   const name = query.trim().replace(/ /g, '+');
   const res = await fetch(`https://mycima.wecima.show/search/${name}/list/`);
   const html = await res.text();
@@ -35,14 +35,14 @@ async function Wiki(query) {
     const href = $(element).find('div').find('a').attr('href');
     const imgRaw = $(element).find('div').find('a').find('span').attr('style');
     
-    let img = null;
+    /*let img = null;
     if (imgRaw && typeof imgRaw === 'string') {
       const matches = imgRaw.match(/\((.*?)\)/);
       if (matches) {
         img = matches[1];
       }
-    }
-    arrays.push({"title":title, "url":href, "img":img});
+    }*/
+    arrays.push({"title":title, "url":href, "img":imgRaw});
   });
   return arrays;
 }
