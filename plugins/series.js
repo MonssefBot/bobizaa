@@ -6,10 +6,10 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
     let items = await Search(text);
-    let cap = "";//JSON.stringify(item[0]);
+    let cap = "\n";
     let loops = items.length < 10? items.length: 10;
     for(let i = 0;i < loops;i++){
-        cap += `↳ 🔗 *LINK :* ${items[i].url} \n↳ 🕐 *DATE :* ${items[i].date} \n ↳ ✏️ *NAME :* ${items[i].title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n`;
+        cap += `\n↳ 🔗 *LINK :* ${items[i].url} \n↳ 🕐 *DATE :* ${items[i].date} \n ↳ ✏️ *NAME :* ${items[i].title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
     }
                 
     await conn.sendFile(m.chat, items[0].img, "", cap, m)
