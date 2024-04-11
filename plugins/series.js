@@ -31,9 +31,9 @@ async function Search(query) {
   let arrays = [];
   
   $('.Grid--WecimaPosts .GridItem').each((index, element) => {
-    const title = $(element).find('div').find('a').attr('title');
-    const href = $(element).find('div').find('a').attr('href');
-    const imgRaw = $(element).find('div').find('a').find('span').attr('style');
+    const title = $(element).find('.Thumb--GridItem').find('a').attr('title');
+    const href = $(element).find('.Thumb--GridItem').find('a').attr('href');
+    const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('span').attr('style');
     
     /*let img = null;
     if (imgRaw && typeof imgRaw === 'string') {
