@@ -6,7 +6,7 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
     let item = await Search(text);
-    let cap = JSON.stringify(item);
+    let cap = JSON.stringify(item[0]);
     /*item.forEach(e => {
         cap += `↳ 🔗 *_LINK :_* ${e.url} \n↳ 🕒 *_DATE :_* ${e.url} \n ↳ ✏️ *_NAME :_* ${e.title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
     });*/
@@ -35,7 +35,7 @@ async function Search(query) {
     const href = $(element).find('.Thumb--GridItem').find('a').attr('href');
     const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').attr('style');
     
-    const span = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem')[0].outerHTML;
+    const span = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').html();
 
       
     /*let img = null;
