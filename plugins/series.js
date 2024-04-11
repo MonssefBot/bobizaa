@@ -39,11 +39,13 @@ async function Search(query) {
 
       
     let img = undefined;
+    let date = undefined;
     const matches = span.match(/\((.*?)\)/);
     if (matches) {
       img = matches[1];
+      date = matches[2];
     }
-    arrays.push({"title":title, "url":href, "img":img, "span":span});
+    arrays.push({"title":title, "url":href, "img":img, "date":date, "span":span});
   });
   return arrays.filter(obj => Object.keys(obj).length !== 0);
 
