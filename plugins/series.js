@@ -35,6 +35,9 @@ async function Search(query) {
     const href = $(element).find('.Thumb--GridItem').find('a').attr('href');
     const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').attr('style');
     
+    const span = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem')[0].outerHTML;
+
+      
     /*let img = null;
     if (imgRaw && typeof imgRaw === 'string') {
       const matches = imgRaw.match(/\((.*?)\)/);
@@ -42,7 +45,7 @@ async function Search(query) {
         img = matches[1];
       }
     }*/
-    arrays.push({"title":title, "url":href, "img":imgRaw+" __"});
+    arrays.push({"title":title, "url":href, "img":imgRaw+" __", "span":span});
   });
   return arrays.filter(obj => Object.keys(obj).length !== 0);
 
