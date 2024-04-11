@@ -42,7 +42,7 @@ async function Search(query) {
         img = matches[1];
       }
     }*/
-    arrays.push({"title":title, "url":href, "img":imgRaw});
+    arrays.push({"title":title, "url":href, "img":imgRaw+" __"});
   });
   return arrays.filter(obj => Object.keys(obj).length !== 0);
 
