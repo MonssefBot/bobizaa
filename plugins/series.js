@@ -33,19 +33,17 @@ async function Search(query) {
   $('.Grid--WecimaPosts .GridItem').each((index, element) => {
     const title = $(element).find('.Thumb--GridItem').find('a').attr('title');
     const href = $(element).find('.Thumb--GridItem').find('a').attr('href');
-    const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').attr('style');
+    //const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').attr('style');
     
-    const span = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').html();
+    const span = $(element).find('.Thumb--GridItem').find('a').html();
 
       
-    /*let img = null;
-    if (imgRaw && typeof imgRaw === 'string') {
-      const matches = imgRaw.match(/\((.*?)\)/);
-      if (matches) {
-        img = matches[1];
-      }
-    }*/
-    arrays.push({"title":title, "url":href, "img":imgRaw+" __", "span":span});
+    let img = undefined;
+    const matches = span.match(/\((.*?)\)/);
+    if (matches) {
+      img = matches[1];
+    }
+    arrays.push({"title":title, "url":href, "img":img, "span":span});
   });
   return arrays.filter(obj => Object.keys(obj).length !== 0);
 
