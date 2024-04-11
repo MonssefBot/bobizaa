@@ -6,12 +6,13 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
     let item = await Search(text);
-    let cap = JSON.stringify(item[0]);
-    /*item.forEach(e => {
-        cap += `↳ 🔗 *_LINK :_* ${e.url} \n↳ 🕒 *_DATE :_* ${e.url} \n ↳ ✏️ *_NAME :_* ${e.title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
-    });*/
+    let cap = "";//JSON.stringify(item[0]);
+    let loops = items.length < 10? items.length: 10;
+    for(let i = 0;i <= loops;i++){
+        cap += `↳ 🔗 *_LINK :_* ${items[i].url} \n↳ 📅 *_DATE :_* ${items[i].date} \n ↳ ✏️ *_NAME :_* ${items[i].title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
+    }
                 
-    await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
+    await conn.sendFile(m.chat, items[0].img, "", cap, m)
                 
     } catch (e) {
         await m.reply("*حدث خطأ أثناء العثور على المسلسل.* \n *المرجو المحاولة لاحقا.*");
