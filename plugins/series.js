@@ -6,7 +6,7 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
     let item = await Wiki(text);
-    let cap = item;
+    let cap = item + "__";
     /*item.forEach(e => {
         cap += `↳ 🔗 *_LINK :_* ${e.url} \n↳ 🕒 *_DATE :_* ${e.url} \n ↳ ✏️ *_NAME :_* ${e.title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
     });*/
