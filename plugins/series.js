@@ -36,11 +36,12 @@ async function Wiki(query) {
     const imgRaw = $(element).find('div').find('a').find('span').attr('style');
     
     let img = null;
-    const matches = imgRaw.match(/\((.*?)\)/);
-    if (matches) {
-      img = matches[1];
+    if (imgRaw && typeof imgRaw === 'string') {
+      const matches = imgRaw.match(/\((.*?)\)/);
+      if (matches) {
+        img = matches[1];
+      }
     }
-    
     arrays.push({"title":title, "url":href, "img":img});
   });
   return arrays;
