@@ -6,7 +6,7 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
     let item = await Wiki(text);
-    let cap = item + "__";
+    let cap = JSON.stringify(item);
     /*item.forEach(e => {
         cap += `↳ 🔗 *_LINK :_* ${e.url} \n↳ 🕒 *_DATE :_* ${e.url} \n ↳ ✏️ *_NAME :_* ${e.title} \n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
     });*/
@@ -25,10 +25,10 @@ export default handler
 async function Wiki(query) {
   const name = query.trim().replace(/ /g, '+');
   return name;
-  /*const res = await fetch(`https://mycima.wecima.show/search/${name}/list/`);
+  const res = await fetch(`https://mycima.wecima.show/search/${name}/list/`);
   const html = await res.text();
   const $ = cheerio.load(html);
-  let linksArray = [];
+  let arrays = [];
   
   $('.Grid--WecimaPosts div').each((index, element) => {
     const title = $(element).find('div').find('a').attr('title');
@@ -42,7 +42,7 @@ async function Wiki(query) {
       img = matches[1];
     }
     
-    linksArray.push({"title":title, "url":href, "img":imgRaw});
+    arrays.push({"title":title, "url":href, "img":img});
   });
-  return linksArray;*/
+  return arrays;
 }
