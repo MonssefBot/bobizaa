@@ -34,12 +34,12 @@ async function Wiki(query) {
     const href = $(element).find('div').find('a').attr('href');
     const imgRaw = $(element).find('div').find('a').find('.BG--GridItem').attr('style');
     
-    let img = null; // تعريف المتغير خارج الشرط
+    /*let img = null; // تعريف المتغير خارج الشرط
     
     const matches = imgRaw.match(/\((.*?)\)/);
     if (matches) {
       img = matches[1];
-    }
+    }*/
     
     linksArray.push({"title":title, "url":href, "img":imgRaw});
   });
