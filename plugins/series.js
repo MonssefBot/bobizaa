@@ -33,7 +33,7 @@ async function Search(query) {
   $('.Grid--WecimaPosts .GridItem').each((index, element) => {
     const title = $(element).find('.Thumb--GridItem').find('a').attr('title');
     const href = $(element).find('.Thumb--GridItem').find('a').attr('href');
-    const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('span').attr('style');
+    const imgRaw = $(element).find('.Thumb--GridItem').find('a').find('.BG--GridItem').attr('style');
     
     /*let img = null;
     if (imgRaw && typeof imgRaw === 'string') {
