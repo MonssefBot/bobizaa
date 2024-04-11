@@ -14,7 +14,7 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await conn.sendFile(m.chat, "https://telegra.ph/file/6ebc06f2b66e93e18155f.jpg", "", cap, m)
                 
     } catch (e) {
-        await m.reply("*حدث خطأ أثناء العثور على المسلسل. \n المرجو المحاولة لاحقا.*")
+        await m.reply("*حدث خطأ أثناء العثور على المسلسل.* \n *المرجو المحاولة لاحقا.*")
     }
 }
 handler.help = ["series"]
@@ -32,10 +32,9 @@ async function Wiki(query) {
   $('.Grid--WecimaPosts div').each((index, element) => {
     const title = $(element).find('div').find('a').attr('title');
     const href = $(element).find('div').find('a').attr('href');
-    const imgRaw = $(element).find('div').find('a').find('.BG--GridItem').attr('style');
+    const imgRaw = $(element).find('div').find('a').find('span').attr('style');
     
-    let img = null; // تعريف المتغير خارج الشرط
-    
+    let img = null;
     const matches = imgRaw.match(/\((.*?)\)/);
     if (matches) {
       img = matches[1];
