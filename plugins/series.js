@@ -24,7 +24,6 @@ export default handler
 
 async function Wiki(query) {
   const name = query.trim().replace(/ /g, '+');
-  return name;
   const res = await fetch(`https://mycima.wecima.show/search/${name}/list/`);
   const html = await res.text();
   const $ = cheerio.load(html);
