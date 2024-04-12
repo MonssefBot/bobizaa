@@ -26,10 +26,10 @@ async function Search(query) {
   const $ = cheerio.load(html);
   let arrays = [];
 
-const imgRaw = $('wecima.separated--top').html();
+const imgRaw = $('.separated--top').html();
       
-const matches = "jj";// imgRaw.match(/\((.*?)\)/);
-    if (matches) {
+//const match = imgRaw.match(/\((.*?)\)/);
+    if (true) {
       arrays.push(imgRaw);
     }else{
         arrays.push("null");
@@ -55,6 +55,6 @@ $('.List--Download--Wecima--Single li a').each((index, element) => {
     }
     arrays.push({"title":title, "url":href, "img":matches[0], "date":matches[1], "span":span});
   });*/
-  return arrays.filter(obj => Object.keys(obj).length !== 0);
+  return arrays;//.filter(obj => Object.keys(obj).length !== 0);
 
 }
