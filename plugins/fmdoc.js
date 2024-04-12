@@ -26,10 +26,10 @@ async function Search(query) {
   const $ = cheerio.load(html);
   let arrays = [];
   
-  const imgRaw = $('.separated--top');
-  const outer = $.root().html(imgRaw);
+  const imgRaw = $('.separated--top').parent().html();
+  //const outer = $.root().html(imgRaw);
 
-arrays.push(outer);
+arrays.push(imgRaw);
     
   /*const match = imgRaw.match(/\((.*?)\)/);
   if (match) {
