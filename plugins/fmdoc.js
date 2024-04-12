@@ -27,12 +27,11 @@ async function Search(query) {
 
 
 
-    
 
 $('.List--Download--Wecima--Single li a').each((index, element) => {
-  const url = $(element).attr('href'); // الحصول على الرابط (href) للعنصر (a)
-  const title = $(element).attr('title'); // الحصول على العنوان (title) للعنصر (a)
-  //console.log(`Link ${index + 1}: ${href} - ${title}`);
+  const url = $(element).attr('href');
+  const text = $(element).find('resolution').text();
+  arrays.push({"text":text, "url":url});
 });
   
   $('.Grid--WecimaPosts .GridItem').each((index, element) => {
