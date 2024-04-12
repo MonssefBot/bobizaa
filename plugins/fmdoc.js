@@ -6,8 +6,8 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
       let items = await Search(text);
-      //let cap = JSON.stringify(items);
-      await conn.sendFile(m.chat, items[0], "", items[0] || "null", m)
+      let cap = JSON.stringify(items);
+      await conn.sendFile(m.chat, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROpqopGi8B1sEO2u64oHavJBh7iKMrWx1DJlGc_CnhXw&s", "", cap || "null", m)
               
     } catch (e) {
         await m.reply("*حدث خطأ أثناء العثور على الفيلم.* \n *المرجو المحاولة لاحقا.*");
@@ -25,15 +25,14 @@ async function Search(query) {
   const html = await res.text();
   const $ = cheerio.load(html);
   let arrays = [];
-
-const imgRaw = $('.separated--top').html();
-      
-//const match = imgRaw.match(/\((.*?)\)/);
-    if (true) {
-      arrays.push(imgRaw);
-    }else{
-        arrays.push("null");
-    }
+  
+  const imgRaw = $('.separated--top').html();
+  const match = imgRaw.match(/\((.*?)\)/);
+  if (match) {
+    arrays.push(match);
+  }else{
+    arrays.push("null");
+  }
 
 
 $('.List--Download--Wecima--Single li a').each((index, element) => {
@@ -42,6 +41,6 @@ $('.List--Download--Wecima--Single li a').each((index, element) => {
   arrays.push({"text":text, "url":url});
 });
   
-  return arrays;//.filter(obj => Object.keys(obj).length !== 0);
+  return arrays.filter(obj => Object.keys(obj).length !== 0);
 
 }
