@@ -29,7 +29,7 @@ async function Search(query) {
   const imgRaw = $('.separated--top').html();
   const match = imgRaw.match(/\((.*?)\)/);
   if (match) {
-    arrays.push(match);
+    arrays.push(match[1]);
   }else{
     arrays.push("null");
   }
