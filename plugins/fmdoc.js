@@ -2,7 +2,7 @@ import cheerio from 'cheerio';
 import fetch from 'node-fetch';
 
 let handler = async (m, {conn, args, usedPrefix, text, command}) => {
-    if (!text) return m.reply("هذا الامر خاص بالبحث عن الأفلام الأجنبية نكتب هكذا \n*.series prison break*")
+    if (!text) return m.reply(" يمكنك تنزيل الأفلام والمسلسلات ذات الرابط المباشر من خلال كتابة:\n*.fdoc https://tgb4.top15top.shop/ki71atw9c16d/Prison.Break.S03E13.720p.Bluray.MyCima.TO.mp4.html?Key=vB26vgc88-IJEgk2BAADaQ&Expires=1712918317*")
     await m.reply(wait)
     try {
       let items = await Search(text);
