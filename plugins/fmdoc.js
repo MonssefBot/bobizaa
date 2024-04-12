@@ -6,8 +6,13 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
       let items = await Search(text);
-      let cap = JSON.stringify(items);
-      await conn.sendFile(m.chat, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROpqopGi8B1sEO2u64oHavJBh7iKMrWx1DJlGc_CnhXw&s", "", cap || "null", m)
+      let cap = "\n";
+
+      for(let i = 1;i < items.length;i++){
+        cap += `\n↳ 🔗 *LINK :* ${items[i].url} \n↳ 💯 *QUALITY :* ${items[i].text}\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
+      }
+        
+      await conn.sendFile(m.chat, items[0], "", cap, m)
               
     } catch (e) {
         await m.reply("*حدث خطأ أثناء العثور على الفيلم.* \n *المرجو المحاولة لاحقا.*");
@@ -30,7 +35,7 @@ async function Search(query) {
    
   const match = imgRaw.match(/\((.*?)\)/);
   if (match) {
-    arrays.push(match[0]);
+    arrays.push(match[1]);
   }else{
     arrays.push("null");
   }
