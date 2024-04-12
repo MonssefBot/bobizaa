@@ -27,16 +27,16 @@ async function Search(query) {
   let arrays = [];
   
   const imgRaw = $('.separated--top');
-  const outerHTML = $.root().html(imgRaw);
+  const outer = $.root().html(imgRaw);
 
-
+arrays.push(outer);
     
-  const match = "kk";//imgRaw.match(/\((.*?)\)/);
+  /*const match = imgRaw.match(/\((.*?)\)/);
   if (match) {
     arrays.push(outerHTML);
   }else{
     arrays.push("null");
-  }
+  }*/
 
 
 $('.List--Download--Wecima--Single li a').each((index, element) => {
