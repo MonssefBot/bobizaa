@@ -28,9 +28,9 @@ async function Search(query) {
 
 const imgRaw = $('wecima.separated--top').html();
       
-const matches = imgRaw.match(/\((.*?)\)/);
+const matches = "jj";// imgRaw.match(/\((.*?)\)/);
     if (matches) {
-      arrays.push(matches[1]);
+      arrays.push(imgRaw);
     }else{
         arrays.push("null");
     }
