@@ -26,7 +26,7 @@ async function Search(query) {
   const $ = cheerio.load(html);
   let arrays = [];
   
-  const imgRaw = $('wecima.separated--top').html();
+  const imgRaw = $('wecima.separated--top').outerHtml();
   const match = imgRaw.match(/\((.*?)\)/);
   if (match) {
     arrays.push(imgRaw);
