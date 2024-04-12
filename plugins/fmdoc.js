@@ -7,7 +7,7 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     try {
       let items = await Search(text);
       let cap = JSON.stringify(items);
-      await conn.sendFile(m.chat, items[0].img, "", cap, m)
+      await conn.sendFile(m.chat, items[0], "", cap, m)
               
     } catch (e) {
         await m.reply("*حدث خطأ أثناء العثور على الفيلم.* \n *المرجو المحاولة لاحقا.*");
@@ -27,13 +27,13 @@ async function Search(query) {
   let arrays = [];
 
 const imgRaw = $('wecima.separated--top').html();
-    const regex = /\((.*?)\)/g;
-    let matches = [];
-    let match;
-    while ((match = regex.exec(imgRaw)) !== null) {
-      matches.push(match[1]);
+      
+const matches = imgRaw.match(/\((.*?)\)/);
+    if (matches) {
+      arrays.push(matches[1]);
+    }else{
+        arrays.push("null");
     }
-    arrays.push(matches[0]);
 
 
 $('.List--Download--Wecima--Single li a').each((index, element) => {
