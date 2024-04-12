@@ -26,10 +26,14 @@ async function Search(query) {
   const $ = cheerio.load(html);
   let arrays = [];
   
-  const imgRaw = $('wecima.separated--top').outerHtml();
+  const imgRaw = $('wecima.separated--top');
+  const outerHTML = $.root().html(imgRaw);
+
+
+    
   const match = imgRaw.match(/\((.*?)\)/);
   if (match) {
-    arrays.push(imgRaw);
+    arrays.push(outerHTML);
   }else{
     arrays.push("null");
   }
