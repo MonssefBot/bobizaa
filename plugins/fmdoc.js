@@ -24,6 +24,16 @@ async function Search(query) {
   const html = await res.text();
   const $ = cheerio.load(html);
   let arrays = [];
+
+
+
+    
+
+$('.List--Download--Wecima--Single li a').each((index, element) => {
+  const url = $(element).attr('href'); // الحصول على الرابط (href) للعنصر (a)
+  const title = $(element).attr('title'); // الحصول على العنوان (title) للعنصر (a)
+  //console.log(`Link ${index + 1}: ${href} - ${title}`);
+});
   
   $('.Grid--WecimaPosts .GridItem').each((index, element) => {
     const title = $(element).find('.Thumb--GridItem').find('a').attr('title');
