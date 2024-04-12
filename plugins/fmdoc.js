@@ -31,7 +31,7 @@ async function Search(query) {
 
 
     
-  const match = imgRaw.match(/\((.*?)\)/);
+  const match = "kk";//imgRaw.match(/\((.*?)\)/);
   if (match) {
     arrays.push(outerHTML);
   }else{
