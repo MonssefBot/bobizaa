@@ -6,11 +6,12 @@ let handler = async (m, {conn, args, usedPrefix, text, command}) => {
     await m.reply(wait)
     try {
       let items = await Search(text);
-            
+      let cap = JSON.stringify(items);
       await conn.sendFile(m.chat, items[0].img, "", cap, m)
               
     } catch (e) {
         await m.reply("*حدث خطأ أثناء العثور على الفيلم.* \n *المرجو المحاولة لاحقا.*");
+        await m.reply(e);
     }
 }
 handler.help = ["fmdoc"]
@@ -25,7 +26,14 @@ async function Search(query) {
   const $ = cheerio.load(html);
   let arrays = [];
 
-
+const imgRaw = $('wecima.separated--top').html();
+    const regex = /\((.*?)\)/g;
+    let matches = [];
+    let match;
+    while ((match = regex.exec(imgRaw)) !== null) {
+      matches.push(match[1]);
+    }
+    arrays.push(matches[0]);
 
 
 $('.List--Download--Wecima--Single li a').each((index, element) => {
@@ -34,7 +42,7 @@ $('.List--Download--Wecima--Single li a').each((index, element) => {
   arrays.push({"text":text, "url":url});
 });
   
-  $('.Grid--WecimaPosts .GridItem').each((index, element) => {
+  /*$('.Grid--WecimaPosts .GridItem').each((index, element) => {
     const title = $(element).find('.Thumb--GridItem').find('a').attr('title');
     const href = $(element).find('.Thumb--GridItem').find('a').attr('href');
     
@@ -46,7 +54,7 @@ $('.List--Download--Wecima--Single li a').each((index, element) => {
       matches.push(match[1]);
     }
     arrays.push({"title":title, "url":href, "img":matches[0], "date":matches[1], "span":span});
-  });
+  });*/
   return arrays.filter(obj => Object.keys(obj).length !== 0);
 
 }
