@@ -21,10 +21,10 @@ let handler = async (m, {
             n: 1,
             size: "1024x1024",
         });
-        let imageUrl = await imgs.data[0].url;
+        //let imageUrl = await imgs.data[0].url;
 
-        //const t = JSON.stringify(imgs);
-        await m.reply(imageUrl);
+        let t = await JSON.stringify(imgs);
+        await m.reply(t);
     } catch (e) {
         await m.reply('*حدث خطأ أثناء إنشاء الصور*❎');
         await m.reply(e)
@@ -35,7 +35,7 @@ handler.tags = ["ai"]
 handler.command = /^(img|img-ai)$/i
 export default handler
 
-async function Translate(text) {
+/*async function Translate(text) {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=${encodeURI(text)}`;
     let response = await fetch(url);
     let json = await response.json();
@@ -59,4 +59,4 @@ async function Send(text){
     const res = await fetch(openaiUrl, methods);
     const data = await res.json();
     return data.data.data[0].url;
-}
+}*/
