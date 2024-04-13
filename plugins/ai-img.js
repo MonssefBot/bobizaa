@@ -14,19 +14,20 @@ let handler = async (m, {
     if (!text) return m.reply("يستعمل هذا الأمر لتوليد صور HD بواسطة الذكاء الإصطناعي . مثلا\n*.img A photograph of a white Siamese cat*");
     await m.reply(wait)
     try {
-        let openai = new OpenAI();
+        const openai = new OpenAI();
         let imgs = await openai.createImage({
             model: "dall-e-3",
             prompt: text,
             n: 1,
             size: "1024x1024",
         });
-        let imageUrl = imgs.data[0].url;
+        let imageUrl = await imgs.data[0].url;
 
         //const t = JSON.stringify(imgs);
         await m.reply(imageUrl);
     } catch (e) {
-        await m.reply('*حدث خطأ أثناء إنشاء الصور*❎'+ String(e));
+        await m.reply('*حدث خطأ أثناء إنشاء الصور*❎');
+        await m.reply(e)
     }
 }
 handler.help = ["img-ai"]
